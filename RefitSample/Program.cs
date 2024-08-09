@@ -1,5 +1,9 @@
+using Refit;
+using RefitSample.Controllers;
+
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddHttpClient();
+builder.Services.AddRefitClient<IJsonPlaceHolder>()
+    .ConfigureHttpClient(config => config.BaseAddress = new Uri("https://jsonplaceholder.typicode.com"));
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
